@@ -1,0 +1,1 @@
+udsData([{"meta":{"sport":"Limited Overs Cricket","overs":"20","participant_1":"Bangladesh,Bangladesh,BAN,04A093,04A093","participant_2":"Zimbabwe,Zimbabwe,ZIM,546C87,FF0000","batting_order":"","last_updated":"1447409172553","version":"1.0","description":"1st T20I"}}]);

@@ -1,0 +1,1 @@
+udsData([{"meta":{"overs":"20","sport":"Limited Overs Cricket","participant_1":"Bangladesh,Bangladesh,BAN,04A093,04A093","participant_2":"South Africa,South Africa,SA,FFCD00,0E4D05","batting_order":"21","last_updated":"1436251315140","version":"1.0","description":"2nd T20I"}}]);

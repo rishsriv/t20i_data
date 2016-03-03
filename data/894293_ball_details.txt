@@ -1,0 +1,1 @@
+udsData([{"meta":{"sport":"Limited Overs Cricket","overs":"20","participant_1":"Zimbabwe,Zimbabwe,ZIM,546C87,FF0000","participant_2":"New Zealand,New Zealand,NZ,012247,FAFAFA","batting_order":"","last_updated":"1439114011678","version":"1.0","description":"Only T20I"}}]);

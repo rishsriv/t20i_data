@@ -1,0 +1,1 @@
+{"data":[],"meta":{"participant_1":"Australia,Australia,AUS,ffc000,e59700","participant_2":"Pakistan,Pakistan,PAK,6b99a3,397380","description":"2nd T20","sport":"Limited Overs Cricket","overs":"20","version":"1.0"}}

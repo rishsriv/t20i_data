@@ -1,0 +1,1 @@
+udsData([{"meta":{"participant_1":"Afghanistan,Afghanistan,AFG,000000,000000","participant_2":"Zimbabwe,Zimbabwe,ZIM,546C87,FF0000","batting_order":"","last_updated":"1452437862649","overs":"20","sport":"Limited Overs Cricket","version":"1.0","description":"2nd T20I"}}]);

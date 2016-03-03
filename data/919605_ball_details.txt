@@ -1,0 +1,1 @@
+udsData([{"meta":{"sport":"Limited Overs Cricket","overs":"20","participant_1":"Zimbabwe,Zimbabwe,ZIM,546C87,FF0000","participant_2":"Pakistan,Pakistan,PAK,084B01,4B4407","batting_order":"","last_updated":"1443520977857","version":"1.0","description":"2nd T20I"}}]);
