@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cricket Analytics</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="/assets/js/jquery-1.12.0.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/datatables.min.css" type="text/css" />
+    <script src="/assets/js/datatables.min.js"></script>
+
+    <script>
+      $(document).ready( function () {
+        $('#all_innings').dataTable({"order": [[1, "desc"]], "dom": 'T<"clear">lfrtip',});
+        $('#year').dataTable({"order": [[1, "asc"]], "dom": 'T<"clear">lfrtip',});
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>{{name}}</h1>
+      <div class="row">
+        <h3>All Bowling Performances</h3>
+        <table class="display" id="all_innings" width="100%">
+          <thead>
+            <tr>{%for i in dets['all_cols']%}<th>{{i}}</th>{%endfor%}</tr>
+          </thead>
+          <tbody>
+            {%for j in dets['all_spells']%}<tr>{%for i in dets['all_cols']%}<td>{%if i != 'date' and i != 'bowler_name' and i != 'opposition'%}{{j[i] | round(2)}}{%else%}{{j[i]}}{%endif%}</td>{%endfor%}</tr>{%endfor%}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row">
+        <h3>Performance by year</h3>
+        <table class="display" id="year" width="100%">
+          <thead>
+            <tr>{%for i in dets['year_cols']%}<th>{{i}}</th>{%endfor%}</tr>
+          </thead>
+          <tbody>
+            {%for j in dets['bowler_year']%}<tr>{%for i in dets['year_cols']%}<td>{%if i != 'year' and i != 'bowler_name' and i != 'opposition'%}{{j[i] | round(2)}}{%else%}{{j[i]}}{%endif%}</td>{%endfor%}</tr>{%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 batsman_name,runs_batter,balls,wicket,strike_rate,average
 AB de Villiers,330.0,285,14.0,115.789473684,23.5714285714
 Aamir Kaleem,74.0,67,2.0,110.447761194,37.0
-Aaron Finch,165.0,96,2.0,171.875,82.5
+Aaron Finch,166.0,98,3.0,169.387755102,55.3333333333
 Aaron Redmond,36.0,23,1.0,156.52173913,36.0
 Abdool Samad,25.0,27,1.0,92.5925925926,25.0
 Abdul Razzaq,61.0,102,6.0,59.8039215686,10.1666666667
@@ -26,7 +26,7 @@ Alok Kapali,12.0,30,0.0,40.0,inf
 Alviro Petersen,8.0,12,1.0,66.6666666667,8.0
 Ambati Rayudu,0.0,2,1.0,0.0,0.0
 Amjad Ali,9.0,12,3.0,75.0,3.0
-Amjad Javed,78.0,66,1.0,118.181818182,78.0
+Amjad Javed,78.0,67,2.0,116.417910448,39.0
 Anamul Haque,56.0,56,1.0,100.0,56.0
 Andre Botha,8.0,7,1.0,114.285714286,8.0
 Andre Fletcher,114.0,97,3.0,117.525773196,38.0
@@ -107,7 +107,7 @@ David Hussey,309.0,290,12.0,106.551724138,25.75
 David Miller,156.0,149,0.0,104.697986577,inf
 David Obuya,20.0,40,2.0,50.0,10.0
 David Rankin,19.0,19,1.0,100.0,19.0
-David Warner,263.0,179,9.0,146.927374302,29.2222222222
+David Warner,263.0,180,10.0,146.111111111,26.3
 David Wiese,9.0,7,0.0,128.571428571,inf
 Dean Brownlie,0.0,2,1.0,0.0,0.0
 Denesh Ramdin,77.0,67,5.0,114.925373134,15.4
@@ -116,7 +116,7 @@ Dhananjaya de Silva,8.0,9,1.0,88.8888888889,8.0
 Dilhara Fernando,8.0,6,0.0,133.333333333,inf
 Dilshan Munaweera,0.0,1,1.0,0.0,0.0
 Dimitri Mascarenhas,12.0,30,2.0,40.0,6.0
-Dinesh Chandimal,129.0,125,8.0,103.2,16.125
+Dinesh Chandimal,171.0,159,9.0,107.547169811,19.0
 Dinesh Karthik,2.0,5,1.0,40.0,2.0
 Doug Bracewell,3.0,10,0.0,30.0,inf
 Duncan Allan,33.0,46,1.0,71.7391304348,33.0
@@ -145,7 +145,7 @@ Geoff Barnett,38.0,33,2.0,115.151515152,19.0
 George Bailey,52.0,52,4.0,100.0,13.0
 George O'Brien,0.0,2,1.0,0.0,0.0
 George Worker,88.0,56,1.0,157.142857143,88.0
-Glenn Maxwell,136.0,81,5.0,167.901234568,27.2
+Glenn Maxwell,153.0,92,6.0,166.304347826,25.5
 Gordon Drummond,0.0,1,1.0,0.0,0.0
 Gordon Goudie,3.0,3,0.0,100.0,inf
 Graeme Cremer,6.0,12,2.0,50.0,3.0
@@ -207,6 +207,7 @@ Joe Root,93.0,88,5.0,105.681818182,18.6
 Johan Botha,34.0,37,1.0,91.8918918919,34.0
 Johan van der Wath,4.0,9,0.0,44.4444444444,inf
 Johann Louw,1.0,2,0.0,50.0,inf
+John Hastings,7.0,8,0.0,87.5,inf
 John Mooney,37.0,46,1.0,80.4347826087,37.0
 Johnson Charles,155.0,135,9.0,114.814814815,17.2222222222
 Jonathan Trott,21.0,31,1.0,67.7419354839,21.0
@@ -281,7 +282,7 @@ Milinda Siriwardana,35.0,31,2.0,112.903225806,17.5
 Mirwais Ashraf,5.0,8,1.0,62.5,5.0
 Misbah-ul-Haq,126.0,142,1.0,88.7323943662,126.0
 Mitchell Johnson,0.0,2,0.0,0.0,
-Mitchell Marsh,5.0,7,0.0,71.4285714286,inf
+Mitchell Marsh,12.0,17,0.0,70.5882352941,inf
 Moeen Ali,55.0,30,2.0,183.333333333,27.5
 Mohammad Ashraful,32.0,37,4.0,86.4864864865,8.0
 Mohammad Hafeez,434.0,362,21.0,119.889502762,20.6666666667
@@ -300,8 +301,8 @@ Moneeb Iqbal,4.0,10,0.0,40.0,inf
 Morne van Wyk,46.0,34,0.0,135.294117647,inf
 Morris Ouma,16.0,17,5.0,94.1176470588,3.2
 Mudassar Bukhari,23.0,41,4.0,56.0975609756,5.75
-Muhammad Kaleem,31.0,25,2.0,124.0,15.5
-Muhammad Usman,20.0,13,0.0,153.846153846,inf
+Muhammad Kaleem,33.0,35,2.0,94.2857142857,16.5
+Muhammad Usman,29.0,25,1.0,116.0,29.0
 Mukhtar Ahmed,21.0,19,1.0,110.526315789,21.0
 Murali Vijay,2.0,3,1.0,66.6666666667,2.0
 Mushfiqur Rahim,196.0,165,8.0,118.787878788,24.5
@@ -339,6 +340,7 @@ Paul Stirling,42.0,25,1.0,168.0,42.0
 Peter Borren,176.0,156,6.0,112.820512821,29.3333333333
 Peter Fulton,41.0,45,3.0,91.1111111111,13.6666666667
 Peter McGlashan,8.0,8,1.0,100.0,8.0
+Peter Nevill,4.0,5,1.0,80.0,4.0
 Peter Ongondo,0.0,1,1.0,0.0,0.0
 Phil Mustard,7.0,8,1.0,87.5,7.0
 Pieter Seelaar,13.0,14,3.0,92.8571428571,4.33333333333
@@ -377,7 +379,7 @@ Robin Peterson,26.0,14,1.0,185.714285714,26.0
 Robin Uthappa,103.0,81,3.0,127.160493827,34.3333333333
 Rodney Trott,2.0,8,0.0,25.0,inf
 Roelof van der Merwe,35.0,41,1.0,85.3658536585,35.0
-Rohan Mustafa,57.0,47,2.0,121.276595745,28.5
+Rohan Mustafa,57.0,52,3.0,109.615384615,19.0
 Rohit Sharma,328.0,268,8.0,122.388059701,41.0
 Ronnie Hira,4.0,11,0.0,36.3636363636,inf
 Rory Kleinveldt,3.0,3,0.0,100.0,inf
@@ -414,7 +416,7 @@ Shafiul Islam,0.0,4,0.0,0.0,
 Shahadat Hossain,1.0,3,1.0,33.3333333333,1.0
 Shahid Afridi,289.0,213,15.0,135.680751174,19.2666666667
 Shahzaib Hasan,4.0,9,1.0,44.4444444444,4.0
-Shaiman Anwar,185.0,150,7.0,123.333333333,26.4285714286
+Shaiman Anwar,206.0,178,7.0,115.730337079,29.4285714286
 Shakib Al Hasan,200.0,165,8.0,121.212121212,25.0
 Shakti Gauchan,1.0,20,1.0,5.0,1.0
 Shane Watson,275.0,161,7.0,170.807453416,39.2857142857
@@ -422,7 +424,7 @@ Shapoor Zadran,0.0,5,0.0,0.0,
 Sharad Vesawkar,58.0,92,2.0,63.0434782609,29.0
 Shaun Marsh,48.0,42,5.0,114.285714286,9.6
 Shaun Pollock,0.0,3,2.0,0.0,0.0
-Shehan Jayasuriya,43.0,40,1.0,107.5,43.0
+Shehan Jayasuriya,45.0,42,1.0,107.142857143,45.0
 Shikhar Dhawan,25.0,21,2.0,119.047619048,12.5
 Shivnarine Chanderpaul,75.0,74,4.0,101.351351351,18.75
 Shoaib Malik,546.0,466,18.0,117.167381974,30.3333333333
@@ -439,7 +441,7 @@ Stephen Fleming,1.0,3,1.0,33.3333333333,1.0
 Steve Tikolo,45.0,44,4.0,102.272727273,11.25
 Steven Davies,5.0,5,1.0,100.0,5.0
 Steven Outerbridge,20.0,23,0.0,86.9565217391,inf
-Steven Smith,44.0,44,3.0,100.0,14.6666666667
+Steven Smith,50.0,61,4.0,81.9672131148,12.5
 Stuart Broad,3.0,8,0.0,37.5,inf
 Stuart Matsikenyeri,19.0,19,2.0,100.0,9.5
 Stuart Poynter,11.0,9,1.0,122.222222222,11.0
@@ -457,7 +459,7 @@ Tatenda Taibu,82.0,81,2.0,101.234567901,41.0
 Thilina Kandamby,8.0,16,1.0,50.0,8.0
 Thisara Perera,47.0,54,3.0,87.037037037,15.6666666667
 Thomas Odoyo,36.0,53,5.0,67.9245283019,7.2
-Tillakaratne Dilshan,327.0,321,12.0,101.869158879,27.25
+Tillakaratne Dilshan,348.0,339,12.0,102.654867257,29.0
 Tim Bresnan,8.0,7,0.0,114.285714286,inf
 Tim Gruijters,4.0,9,1.0,44.4444444444,4.0
 Tim Paine,5.0,4,1.0,125.0,5.0

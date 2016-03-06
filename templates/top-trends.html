@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Top Trends - Social Listening India</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="/assets/js/jquery-1.12.0.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/datatables.min.css" type="text/css" />
+    <script src="/assets/js/datatables.min.js"></script>
+    <script src="/assets/js/dygraph.js"></script>
+
+    <script>
+      $(document).ready( function () {
+        $('#top-links').dataTable({"order": [[7, "desc"]], "dom": 'T<"clear">lfrtip',});
+      });
+    </script>
+
+    <script>
+    $(function(){
+        $('#submit').on('click', function(e){
+            e.preventDefault(); // prevent the default click action
+            var $form = $('#trendForm');
+            $.ajax({
+                url: $form.attr("action"),
+                type: $form.attr("method"),
+                data: $form.serialize(),
+                dataType: 'json',
+                success: function (response) {
+                    if (response.response != null){
+                      g = new Dygraph(document.getElementById("graphdiv"), response.response);
+                    } else {
+                      $("#graphdiv").innerHTML = 'Topic not found.'
+                    }
+                },
+                error: function (response) {
+                    alert('An error occured - we are working to fix it!');
+                },
+            });
+        });
+    });
+  </script>
+  <script>
+    function click(){$('#submit').click();}
+  </script>
+  </head>
+  <body onload=click()>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Social Listening India</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/top_links">Top Links </a></li>
+            <li class="active"><a href="/#">Top Topics <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+      <div class="row">
+        <h3>Search for a topic</h3>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="input-group">
+              <form action="/ind_trend" method="POST" id="trendForm">
+                <input type="text" class="form-control" aria-label="..." name="topic" placeholder="modi">
+                <select class="form-control" name="t">
+                  <option>Last 3 hours</option>
+                  <option>Last 6 hours</option>
+                  <option>Last 12 hours</option>
+                </select>
+                <select class="form-control" name="type">
+                  <option>Shares</option>
+                  <option>Comments</option>
+                  <option>Likes</option>
+                </select>
+                <button type="button" class="btn btn-primary" id="submit">Submit</button>
+              </form>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        <div class="row">
+          <div class="col-lg-6">
+            <div id="graphdiv" style="width:100%; height:300px;"></div>
+          </div>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <h3>Trending Topics in India</h3>
+        <table class="display" id="top-links" width="100%">
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>Likes</th>
+              <th>Comments</th>
+              <th>Shares</th>
+              <th>Total Articles</th>
+              <th>Controversy Index</th>
+              <th>Trending Index</th>
+              <th>Overall Index</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for topic in topics%}
+            <tr>
+              <td>{{topic['topic']}}</a></td>
+              <td>{{topic['total_likes']|int}}</td>
+              <td>{{topic['total_comments']|int}}</td>
+              <td>{{topic['total_shares']|int}}</td>
+              <td>{{topic['num_articles']|int}}</td>
+              <td>{{"{:,.3f}".format(topic['controversy_index'])}}</td>
+              <td>{{"{:,.3f}".format(topic['trending_index_total'])}}</td>
+              <td>{{"{:.0f}".format(topic['compound_index_total'])}}</td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

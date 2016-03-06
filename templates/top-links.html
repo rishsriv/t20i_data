@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Top Links - Social Listening India</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="/assets/js/jquery-1.12.0.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/datatables.min.css" type="text/css" />
+    <script src="/assets/js/datatables.min.js"></script>
+
+    <script>
+      $(document).ready( function () {
+        $('#top-links').dataTable({"order": [[4, "desc"]], "dom": 'T<"clear">lfrtip',});
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Social Listening India</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Top Links <span class="sr-only">(current)</span></a></li>
+            <li><a href="/top_trends">Top Topics</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+      <div class="row">
+        <h3>Trending Articles in India</h3>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Last {{t_threshold}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li>{%if t_threshold != '1 hour'%}<a href="/top_links?t=1">{%else%}<a href="/#">{%endif%}Last 1 hour</a></li>
+            <li>{%if t_threshold != '2 hours'%}<a href="/top_links?t=2">{%else%}<a href="/#">{%endif%}Last 2 hours</a></li>
+            <li>{%if t_threshold != '3 hours'%}<a href="/top_links?t=3">{%else%}<a href="/#">{%endif%}Last 3 hours</a></li>
+            <li>{%if t_threshold != '6 hours'%}<a href="/top_links?t=4">{%else%}<a href="/#">{%endif%}Last 6 hours</a></li>
+            <li>{%if t_threshold != '12 hours'%}<a href="/top_links?t=5">{%else%}<a href="/#">{%endif%}Last 12 hours</a></li>
+            <li>{%if t_threshold != '24 hours'%}<a href="/top_links?t=6">{%else%}<a href="/#">{%endif%}<a href="/top_links?t=6">Last 24 hours</a></li>
+          </ul>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <table class="display" id="top-links" width="100%">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Publisher</th>
+              <th>FB Likes</th>
+              <th>FB Comments</th>
+              <th>FB Shares</th>
+              <th>Controversy Index</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for article in articles%}
+            <tr>
+              <td><a href="{{article['link']}}">{{article['title']}}</a></td>
+              <td>{{article['page']}}</a></td>
+              <td>{{article['tot_likes']|int}}</td>
+              <td>{{article['tot_comments']|int}}</td>
+              <td>{{article['tot_shares']|int}}</td>
+              <td>{{"{:,.3f}".format(article['controversy_index'])}}</td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
