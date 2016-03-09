@@ -49,7 +49,7 @@ Andy McKay,0.0,1,1.0,0.0,0.0
 Angelo Mathews,350.0,203,14.0,172.413793103,25.0
 Anwar Ali,23.0,17,1.0,135.294117647,23.0
 Arafat Sunny,10.0,14,2.0,71.4285714286,5.0
-Asghar Stanikzai,9.0,12,3.0,75.0,3.0
+Asghar Stanikzai,31.0,36,6.0,86.1111111111,5.16666666667
 Ashish Bagai,42.0,35,4.0,120.0,10.5
 Ashish Nehra,4.0,12,1.0,33.3333333333,4.0
 Ashley Nurse,6.0,3,0.0,200.0,inf
@@ -126,7 +126,7 @@ David Warner,22.0,17,0.0,129.411764706,inf
 David Wiese,38.0,26,3.0,146.153846154,12.6666666667
 David Willey,20.0,16,2.0,125.0,10.0
 Dawlat Ahmadzai,2.0,3,0.0,66.6666666667,inf
-Dawlat Zadran,14.0,14,2.0,100.0,7.0
+Dawlat Zadran,17.0,16,2.0,106.25,8.5
 Denesh Ramdin,120.0,90,10.0,133.333333333,12.0
 Derwin Christian,0.0,2,1.0,0.0,0.0
 Devendra Bishoo,0.0,2,2.0,0.0,0.0
@@ -138,6 +138,7 @@ Dilruwan Perera,1.0,8,1.0,12.5,1.0
 Dimitri Mascarenhas,76.0,45,3.0,168.888888889,25.3333333333
 Dinesh Chandimal,53.0,29,3.0,182.75862069,17.6666666667
 Dirk Nannes,4.0,4,1.0,100.0,4.0
+Donald Tiripano,0.0,2,1.0,0.0,0.0
 Doug Bracewell,27.0,18,0.0,150.0,inf
 Duncan Allan,1.0,2,1.0,50.0,1.0
 Dushmantha Chameera,12.0,12,1.0,100.0,12.0
@@ -148,7 +149,7 @@ Ed Rainsford,1.0,2,0.0,50.0,inf
 Eion Katchay,7.0,14,1.0,50.0,7.0
 Elias Sunny,1.0,1,0.0,100.0,inf
 Elijah Otieno,6.0,12,2.0,50.0,3.0
-Elton Chigumbura,258.0,156,11.0,165.384615385,23.4545454545
+Elton Chigumbura,288.0,169,12.0,170.414201183,24.0
 Eoin Morgan,226.0,114,8.0,198.245614035,28.25
 Eric Szwarczynski,10.0,14,0.0,71.4285714286,inf
 Ewen Thompson,1.0,1,0.0,100.0,inf
@@ -182,7 +183,7 @@ Graeme Swann,52.0,44,2.0,118.181818182,26.0
 Grant Elliott,29.0,19,1.0,152.631578947,29.0
 Greg Lamb,7.0,4,0.0,175.0,inf
 Gregor Maiden,0.0,1,1.0,0.0,0.0
-Gulbadin Naib,129.0,94,8.0,137.234042553,16.125
+Gulbadin Naib,133.0,98,9.0,135.714285714,14.7777777778
 Gyanendra Malla,20.0,11,1.0,181.818181818,20.0
 Hamid Hassan,21.0,18,2.0,116.666666667,10.5
 Hamilton Masakadza,95.0,65,2.0,146.153846154,47.5
@@ -295,7 +296,7 @@ Mahela Jayawardene,199.0,127,5.0,156.692913386,39.8
 Mahmudullah,122.0,77,5.0,158.441558442,24.4
 Majid Haq,22.0,28,1.0,78.5714285714,22.0
 Makhaya Ntini,5.0,6,1.0,83.3333333333,5.0
-Malcolm Waller,105.0,60,5.0,175.0,21.0
+Malcolm Waller,109.0,66,6.0,165.151515152,18.1666666667
 Manish Pandey,4.0,2,1.0,200.0,4.0
 Manjula Guruge,3.0,8,1.0,37.5,3.0
 Marcus North,9.0,10,1.0,90.0,9.0
@@ -334,7 +335,7 @@ Mohammad Amir,38.0,42,6.0,90.4761904762,6.33333333333
 Mohammad Ashraful,2.0,5,1.0,40.0,2.0
 Mohammad Hafeez,37.0,29,3.0,127.586206897,12.3333333333
 Mohammad Irfan,1.0,3,0.0,33.3333333333,inf
-Mohammad Nabi,154.0,99,9.0,155.555555556,17.1111111111
+Mohammad Nabi,155.0,100,9.0,155.0,17.2222222222
 Mohammad Nadeem,7.0,9,1.0,77.7777777778,7.0
 Mohammad Nasim Baras,1.0,2,0.0,50.0,inf
 Mohammad Naveed,54.0,42,4.0,128.571428571,13.5
@@ -476,7 +477,7 @@ Scott Styris,44.0,21,3.0,209.523809524,14.6666666667
 Sean Williams,45.0,34,3.0,132.352941176,15.0
 Seekkuge Prasanna,6.0,5,0.0,120.0,inf
 Shadeep Silva,14.0,19,0.0,73.6842105263,inf
-Shafiqullah,117.0,62,5.0,188.709677419,23.4
+Shafiqullah,131.0,67,5.0,195.52238806,26.2
 Shafiul Islam,2.0,6,2.0,33.3333333333,1.0
 Shaheed Keshvani,0.0,1,0.0,0.0,
 Shahid Afridi,349.0,236,21.0,147.881355932,16.619047619
@@ -539,7 +540,7 @@ Tim Murtagh,15.0,14,1.0,107.142857143,15.0
 Tim Southee,4.0,10,2.0,40.0,2.0
 Timm van der Gugten,12.0,5,0.0,240.0,inf
 Timycen Maruma,20.0,18,1.0,111.111111111,20.0
-Tinashe Panyangara,4.0,3,1.0,133.333333333,4.0
+Tinashe Panyangara,4.0,5,1.0,80.0,4.0
 Tinotenda Mutombodzi,14.0,12,1.0,116.666666667,14.0
 Tom Cooper,81.0,45,3.0,180.0,27.0
 Tom Latham,35.0,31,3.0,112.903225806,11.6666666667
@@ -562,11 +563,11 @@ Vikram Solanki,9.0,5,1.0,180.0,9.0
 Vikrant Shetty,11.0,14,2.0,78.5714285714,5.5
 Vinay Kumar,2.0,4,0.0,50.0,inf
 Virat Kohli,90.0,55,5.0,163.636363636,18.0
-Vusi Sibanda,7.0,7,1.0,100.0,7.0
+Vusi Sibanda,15.0,11,2.0,136.363636364,7.5
 Wahab Riaz,39.0,29,1.0,134.482758621,39.0
 Waqas Khan,8.0,13,1.0,61.5384615385,8.0
 Wayne Parnell,51.0,46,2.0,110.869565217,25.5
-Wellington Masakadza,4.0,1,0.0,400.0,inf
+Wellington Masakadza,6.0,6,0.0,100.0,inf
 Wesley Barresi,42.0,36,3.0,116.666666667,14.0
 William Porterfield,11.0,11,1.0,100.0,11.0
 Xavier Doherty,7.0,9,1.0,77.7777777778,7.0

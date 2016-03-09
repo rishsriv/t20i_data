@@ -35,7 +35,7 @@ Anshy Rath,25.0,37,2.0,67.5675675676,12.5
 Anton Devcich,101.0,67,1.0,150.746268657,101.0
 Asad Shafiq,66.0,51,1.0,129.411764706,66.0
 Asela Gunaratne,4.0,12,1.0,33.3333333333,4.0
-Asghar Stanikzai,86.0,112,2.0,76.7857142857,43.0
+Asghar Stanikzai,96.0,124,2.0,77.4193548387,48.0
 Ashif Mulla,1.0,2,1.0,50.0,1.0
 Ashish Bagai,12.0,11,0.0,109.090909091,inf
 Assad Vala,20.0,32,2.0,62.5,10.0
@@ -112,7 +112,7 @@ Greg Lamb,1.0,4,0.0,25.0,inf
 Gulam Bodi,5.0,14,1.0,35.7142857143,5.0
 Gulbadin Naib,21.0,23,1.0,91.3043478261,21.0
 Gyanendra Malla,37.0,32,1.0,115.625,37.0
-Hamilton Masakadza,471.0,369,8.0,127.642276423,58.875
+Hamilton Masakadza,491.0,382,9.0,128.534031414,54.5555555556
 Hamish Rutherford,85.0,59,2.0,144.06779661,42.5
 Hashim Amla,283.0,218,8.0,129.816513761,35.375
 Henry Davids,59.0,56,3.0,105.357142857,19.6666666667
@@ -210,7 +210,7 @@ Mohammad Hafeez,391.0,402,10.0,97.263681592,39.1
 Mohammad Iqbal,16.0,12,0.0,133.333333333,inf
 Mohammad Mithun,24.0,23,1.0,104.347826087,24.0
 Mohammad Nabi,1.0,7,1.0,14.2857142857,1.0
-Mohammad Shahzad,433.0,321,16.0,134.890965732,27.0625
+Mohammad Shahzad,447.0,333,16.0,134.234234234,27.9375
 Mohammad Yousuf,30.0,22,1.0,136.363636364,30.0
 Morne van Wyk,46.0,43,3.0,106.976744186,15.3333333333
 Morris Ouma,51.0,70,5.0,72.8571428571,10.2
@@ -237,7 +237,7 @@ Niroshan Dickwella,1.0,2,1.0,50.0,1.0
 Nitish Kumar,16.0,12,0.0,133.333333333,inf
 Nizakat Khan,27.0,21,2.0,128.571428571,13.5
 Nkrumah Bonner,2.0,12,0.0,16.6666666667,inf
-Noor Ali Zadran,74.0,81,0.0,91.3580246914,inf
+Noor Ali Zadran,91.0,93,1.0,97.8494623656,91.0
 Oliver Pitcher,15.0,24,0.0,62.5,inf
 Oronde Bascome,2.0,6,1.0,33.3333333333,2.0
 Owais Shah,2.0,8,0.0,25.0,inf
@@ -263,7 +263,7 @@ Reeza Hendricks,72.0,61,1.0,118.032786885,72.0
 Regis Chakabva,0.0,3,1.0,0.0,0.0
 Richard Levi,60.0,55,6.0,109.090909091,10.0
 Richie Berrington,114.0,99,5.0,115.151515152,22.8
-Richmond Mutumbami,23.0,22,0.0,104.545454545,inf
+Richmond Mutumbami,23.0,25,1.0,92.0,23.0
 Ricky Ponting,106.0,87,4.0,121.83908046,26.5
 Rilee Rossouw,28.0,21,2.0,133.333333333,14.0
 Rizwan Cheema,102.0,82,4.0,124.390243902,25.5
@@ -284,7 +284,7 @@ Samiullah Shenwari,2.0,5,0.0,40.0,inf
 Sanath Jayasuriya,283.0,232,9.0,121.982758621,31.4444444444
 Sarfraz Ahmed,6.0,7,0.0,85.7142857143,inf
 Scott Styris,12.0,11,0.0,109.090909091,inf
-Sean Williams,50.0,32,0.0,156.25,inf
+Sean Williams,62.0,37,0.0,167.567567568,inf
 Seekkuge Prasanna,8.0,5,0.0,160.0,inf
 Sese Bau,6.0,15,0.0,40.0,inf
 Shabir Noori,12.0,12,0.0,100.0,inf
@@ -343,7 +343,7 @@ Vani Morea,21.0,31,0.0,67.7419354839,inf
 Vernon Philander,1.0,2,0.0,50.0,inf
 Virat Kohli,224.0,190,4.0,117.894736842,56.0
 Virender Sehwag,115.0,102,7.0,112.745098039,16.4285714286
-Vusi Sibanda,97.0,87,5.0,111.494252874,19.4
+Vusi Sibanda,117.0,103,5.0,113.59223301,23.4
 Waqas Barkat,15.0,19,1.0,78.9473684211,15.0
 Wesley Barresi,89.0,87,5.0,102.298850575,17.8
 William Porterfield,198.0,183,12.0,108.196721311,16.5
