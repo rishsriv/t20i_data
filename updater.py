@@ -213,10 +213,10 @@ for idx, match_id in enumerate(matches):
             df2 = pd.DataFrame(l)
             if len(df2) == len(df):
                 df = df.join(df2)
-                cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'non_striker',
-                'bowler_name', 'bat_right_handed', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
+                cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order'
+                'non_striker', 'bowler_name', 'bat_right_handed', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
                 'x', 'y', 'z', 'landing_x', 'landing_y', 'ended_x', 'ended_y', 'ball_speed', 'cumul_runs',
-                'wicket', 'wicket_method', 'who_out', 'control', 'extras_type']
+                'cumul_wickets',  'cumul_balls', 'wicket', 'wicket_method', 'who_out', 'control', 'extras_type']
             else:
                 print 'discrepancy', match_id
                 cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
