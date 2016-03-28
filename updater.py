@@ -12,8 +12,8 @@ def extract_id(i):
     return i.split('/')[-1].split('.')[0]
 
 proxies = {
-  'http': 'http://10.201.96.145:80',
-  'https': 'http://10.201.96.145:80',
+#  'http': 'http://10.201.96.145:80',
+#  'https': 'http://10.201.96.145:80',
 }
 
 data = [['team1_name', 'team2_name', 'team1_id', 'team2_id', 'ground_name', 'ground_id', 'match_id', 'date']]
@@ -240,12 +240,12 @@ match_date = matches.set_index('match_id').date.to_dict()
 files = sorted(match_date.items(), key=lambda value: value[1])
 
 def get_req_rr(row):
-    runs_to_get = row['target'] - row['cumul_runs']
-    balls_remaining = 120 - row['cumul_balls']
-    if balls_remaining > 0 and runs_to_get >= 0:
-        return 6.*runs_to_get/balls_remaining
-    else:
-        return None
+    if 'cumul_balls' in row:
+        runs_to_get = row['target'] - row['cumul_runs']
+        balls_remaining = 120 - row['cumul_balls']
+        if balls_remaining > 0 and runs_to_get >= 0:
+            return 6.*runs_to_get/balls_remaining
+    return None
 
 all_data = pd.DataFrame()
 for idx, fname in enumerate(files):
