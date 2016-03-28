@@ -56,39 +56,39 @@ matches = [str(i) for i in matches]
 n = len(matches)
 
 for idx, game_id in enumerate(matches):
-    #if not os.path.exists('cleaned_data/%s_summary.csv'%game_id):
-    try:
-        r1 = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?inning=1;template=wagon'%(game_id),
-                         proxies=proxies)
-        r2 = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?inning=2;template=wagon'%(game_id),
-                         proxies=proxies)
-        #print r1.status_code
-        #print r2.status_code
-        with open('data/'+game_id+'-wagon-inning-1.json', 'w') as outfile:
-            json.dump(r1.json(), outfile)
-
-        with open('data/'+str(game_id)+'-wagon-inning-2.json', 'w') as outfile:
-            json.dump(r2.json(), outfile)
-
-        r = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?template=pie_wickets'%(game_id),
-                        proxies=proxies)
-        with open('data/'+game_id+'-pie-wickets.json', 'w') as outfile:
-            json.dump(r.json(), outfile)
-
+    if not os.path.exists('cleaned_data/%s_summary.csv'%game_id):
         try:
-            r = requests.get('http://www.espncricinfo.com/ci/engine/match/%s.html?view=hawkeye'%game_id)
-            dom = web.Element(r.content)
-            data_id = dom.by_id('matchId').attr.get('data-contentid')
-            r = requests.get('http://dynamic.pulselive.com/dynamic/cricinfo/%s/uds.json.jgz'%data_id)
-            with open('data/'+game_id+'_ball_details.txt', 'wb') as f:
-                f.write(r.content)
+            r1 = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?inning=1;template=wagon'%(game_id),
+                             proxies=proxies)
+            r2 = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?inning=2;template=wagon'%(game_id),
+                             proxies=proxies)
+            #print r1.status_code
+            #print r2.status_code
+            with open('data/'+game_id+'-wagon-inning-1.json', 'w') as outfile:
+                json.dump(r1.json(), outfile)
+
+            with open('data/'+str(game_id)+'-wagon-inning-2.json', 'w') as outfile:
+                json.dump(r2.json(), outfile)
+
+            r = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?template=pie_wickets'%(game_id),
+                            proxies=proxies)
+            with open('data/'+game_id+'-pie-wickets.json', 'w') as outfile:
+                json.dump(r.json(), outfile)
+
+            try:
+                r = requests.get('http://www.espncricinfo.com/ci/engine/match/%s.html?view=hawkeye'%game_id)
+                dom = web.Element(r.content)
+                data_id = dom.by_id('matchId').attr.get('data-contentid')
+                r = requests.get('http://dynamic.pulselive.com/dynamic/cricinfo/%s/uds.json.jgz'%data_id)
+                with open('data/'+game_id+'_ball_details.txt', 'wb') as f:
+                    f.write(r.content)
+            except:
+                pass
+            print 'Success', game_id, idx, n
         except:
-            pass
-        print 'Success', game_id, idx, n
-    except:
-        print 'Failed', game_id, idx, n
-    #else:
-    #    print 'Already Exists', game_id, idx, n
+            print 'Failed', game_id, idx, n
+    else:
+        print 'Already Exists', game_id, idx, n
 
 all_matches = pd.read_csv('all_t20i_05-16.csv')
 all_matches = all_matches.sort('date', ascending = False)
@@ -207,9 +207,12 @@ for idx, match_id in enumerate(matches):
             l = []
             for i in a[0]['data']:
                 temp = i.values()[0].split(',')
-                l.append({'non_striker': temp[1], 'ball_speed': temp[3], 'landing_y': temp[4], 'landing_x': temp[5],
-                  'bat_right_handed': temp[6], 'ended_x': temp[7], 'ended_y': temp[8],
-                  'control': int(temp[9] == 'N'), 'extras_type': temp[19]})
+                try:
+                    l.append({'non_striker': temp[1], 'ball_speed': temp[3], 'landing_y': temp[4], 'landing_x': temp[5],
+                      'bat_right_handed': temp[6], 'ended_x': temp[7], 'ended_y': temp[8],
+                      'control': int(temp[9] == 'N'), 'extras_type': temp[19]})
+                except:
+                    print 'complete parsing failed'
             df2 = pd.DataFrame(l)
             if len(df2) == len(df):
                 df = df.join(df2)
