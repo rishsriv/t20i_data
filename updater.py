@@ -212,7 +212,7 @@ for idx, match_id in enumerate(matches):
                       'bat_right_handed': temp[6], 'ended_x': temp[7], 'ended_y': temp[8],
                       'control': int(temp[9] == 'N'), 'extras_type': temp[19]})
                     df2 = pd.DataFrame(l)
-                    cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order'
+                    cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
                             'non_striker', 'bowler_name', 'bat_right_handed', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
                             'x', 'y', 'z', 'landing_x', 'landing_y', 'ended_x', 'ended_y', 'ball_speed', 'cumul_runs',
                             'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out', 'control', 'extras_type']
