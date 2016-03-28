@@ -228,8 +228,9 @@ for idx, match_id in enumerate(matches):
         df = df[cols]
         df.to_csv('cleaned_data/%s_summary.csv'%(match_id))
         print 'success', idx, len(matches)
-    except:
+    except Exception as ex:
         print 'failed', idx, match_id, len(matches)
+        print ex.args
         failed_ids.append(int(match_id))
     #else:
     #    print 'already exists', idx, len(matches)
