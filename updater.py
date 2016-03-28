@@ -221,8 +221,8 @@ for idx, match_id in enumerate(matches):
                     cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
                             'bowler_name', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
                             'x', 'y', 'z', 'cumul_runs', 'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out']
-                    print 'complete parsing failed'
         except:
+            print 'complete parsing failed'
             cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
                 'bowler_name', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
                 'x', 'y', 'z', 'cumul_runs', 'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out']
