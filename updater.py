@@ -12,8 +12,8 @@ def extract_id(i):
     return i.split('/')[-1].split('.')[0]
 
 proxies = {
-  #'http': 'http://10.201.96.145:80',
-  #'https': 'http://10.201.96.145:80',
+  'http': 'http://10.201.96.145:80',
+  'https': 'http://10.201.96.145:80',
 }
 
 data = [['team1_name', 'team2_name', 'team1_id', 'team2_id', 'ground_name', 'ground_id', 'match_id', 'date']]
@@ -101,138 +101,139 @@ import os.path
 failed_ids = []
 
 for idx, match_id in enumerate(matches):
-    if not os.path.exists('cleaned_data/%s_summary.csv'%match_id):
-        try:
-            wicket_data = json.load(open('data/%s-pie-wickets.json'%(match_id)))
-            df = pd.io.json.read_json('data/%s-wagon-inning-1.json'%(match_id), dtype=False)    
-            df['inning'] = 1
-            df['batting_team'] = wicket_data['t1']['n']
-            df['bowling_team'] = wicket_data['t2']['n']
+    #if not os.path.exists('cleaned_data/%s_summary.csv'%match_id):
+    try:
+        wicket_data = json.load(open('data/%s-pie-wickets.json'%(match_id)))
+        df = pd.io.json.read_json('data/%s-wagon-inning-1.json'%(match_id), dtype=False)    
+        df['inning'] = 1
+        df['batting_team'] = wicket_data['t1']['n']
+        df['bowling_team'] = wicket_data['t2']['n']
 
-            df2 = pd.io.json.read_json('data/%s-wagon-inning-2.json'%(match_id), dtype=False)
-            df2['inning'] = 2
-            df2['batting_team'] = wicket_data['t2']['n']
-            df2['bowling_team'] = wicket_data['t1']['n']
+        df2 = pd.io.json.read_json('data/%s-wagon-inning-2.json'%(match_id), dtype=False)
+        df2['inning'] = 2
+        df2['batting_team'] = wicket_data['t2']['n']
+        df2['bowling_team'] = wicket_data['t1']['n']
 
-            df['batsman'], df['bowler'], df['ball_num'], df['ovr'], df['runs_batter'], df['runs_w_extras'], df['x'], df['y'], df['z'] = zip(*df.runs.apply(f))
-            df2['batsman'], df2['bowler'], df2['ball_num'], df2['ovr'], df2['runs_batter'], df2['runs_w_extras'], df2['x'], df2['y'], df2['z'] = zip(*df2.runs.apply(f))
+        df['batsman'], df['bowler'], df['ball_num'], df['ovr'], df['runs_batter'], df['runs_w_extras'], df['x'], df['y'], df['z'] = zip(*df.runs.apply(f))
+        df2['batsman'], df2['bowler'], df2['ball_num'], df2['ovr'], df2['runs_batter'], df2['runs_w_extras'], df2['x'], df2['y'], df2['z'] = zip(*df2.runs.apply(f))
 
-            for param in ['ball_num', 'ovr', 'runs_batter', 'runs_w_extras', 'x', 'y', 'z']:
-                df[param] = df[param].astype(float)
-                df2[param] = df2[param].astype(float)
+        for param in ['ball_num', 'ovr', 'runs_batter', 'runs_w_extras', 'x', 'y', 'z']:
+            df[param] = df[param].astype(float)
+            df2[param] = df2[param].astype(float)
 
-            from collections import defaultdict
-            dismissals = defaultdict(dict)
+        from collections import defaultdict
+        dismissals = defaultdict(dict)
 
-            for i in wicket_data['t1']['w']:
-                dismissals[float(i['ovr'])] = {'inning': 1, 'how': i['how'], 'ovr': float(i['ovr']), 'batsman': i['out'], 'bowler': i['outby']}
+        for i in wicket_data['t1']['w']:
+            dismissals[float(i['ovr'])] = {'inning': 1, 'how': i['how'], 'ovr': float(i['ovr']), 'batsman': i['out'], 'bowler': i['outby']}
 
-            for i in wicket_data['t2']['w']:
-                dismissals[float(i['ovr'])] = {'inning': 2, 'how': i['how'], 'ovr': float(i['ovr']), 'batsman': i['out'], 'bowler': i['outby']}
+        for i in wicket_data['t2']['w']:
+            dismissals[float(i['ovr'])] = {'inning': 2, 'how': i['how'], 'ovr': float(i['ovr']), 'batsman': i['out'], 'bowler': i['outby']}
 
-            def add_wickets(inning, ovr, batsman, extras, unique, dismissals = dismissals):
-                #Note: a run-out on a no-ball or wide will be double-counted
-                if ovr in dismissals and dismissals[ovr]['inning'] == inning:
-                    if unique == 'True':
-                        return True, dismissals[ovr]['how'], dismissals[ovr]['batsman']
-                    else:
-                        if dismissals[ovr]['how'] != 'run out':
-                            if extras == 0:
-                                return True, dismissals[ovr]['how'], dismissals[ovr]['batsman']
-                            else:
-                                return False, np.nan, np.nan
-                        else:
-                            return True, dismissals[ovr]['how'], dismissals[ovr]['batsman'] #think of a better way later
-                return False, np.nan, np.nan
-
-            val_count_1 = df.ovr.value_counts()
-            val_count_2 = df2.ovr.value_counts()
-
-            def get_unique_1(i):
-                if val_count_1[i] == 1:
-                    return True
-                return False
-
-            def get_unique_2(i):
-                if val_count_2[i] == 1:
-                    return True
-                return False
-
-            df['ovr_unique'] = df.ovr.apply(get_unique_1)
-            df2['ovr_unique'] = df2.ovr.apply(get_unique_2)
-            df['extras'] = df['runs_w_extras'] - df['runs_batter']
-            df2['extras'] = df2['runs_w_extras'] - df2['runs_batter']
-            df['wicket'], df['wicket_method'], df['who_out'] = zip(*df.apply(lambda row: add_wickets(row['inning'], row['ovr'], row['batsman'], row['extras'], row['ovr_unique']), axis=1))
-            df2['wicket'], df2['wicket_method'], df2['who_out'] = zip(*df2.apply(lambda row: add_wickets(row['inning'], row['ovr'], row['batsman'], row['extras'], row['ovr_unique']), axis=1))
-            df['match_id'] = match_id
-            df2['match_id'] = match_id
-
-            df['cumul_runs'] = df['runs_w_extras'].cumsum()
-            df['cumul_wickets'] = df['wicket'].cumsum()
-            df['cumul_balls'] = df['ovr'].apply(lambda x: 6*int(x) + int(10*x)%10)
-            df2['cumul_runs'] = df2['runs_w_extras'].cumsum()
-            df2['cumul_wickets'] = df2['wicket'].cumsum()
-            df2['cumul_balls'] = df2['ovr'].apply(lambda x: 6*int(x) + int(10*x)%10)
-
-            player_db = {}
-            inn_1_batting_order = {}
-            inn_2_batting_order = {}
-            for idx__, d in enumerate(wicket_data['t1']['p']):
-                player_db.update(d)
-                inn_1_batting_order[d.keys()[0]] = idx__+1
-            for idx__, d in enumerate(wicket_data['t2']['p']):
-                player_db.update(d)
-                inn_2_batting_order[d.keys()[0]] = idx__+1
-
-            def get_name(i):
-                return player_db.get(i, None)
-
-            df['batsman_name'] = df['batsman'].apply(get_name)
-            df['bowler_name'] = df['bowler'].apply(get_name)
-            df['who_out'] = df['who_out'].apply(get_name)
-            df['batting_order'] = df['batsman'].apply(inn_1_batting_order.get)
-
-            df2['batsman_name'] = df2['batsman'].apply(get_name)
-            df2['bowler_name'] = df2['bowler'].apply(get_name)
-            df2['who_out'] = df2['who_out'].apply(get_name)
-            df2['batting_order'] = df2['batsman'].apply(inn_2_batting_order.get)
-
-            df = df.append(df2)    
-            df = df.drop('runs', axis=1)
-            df = df.reset_index(drop=True)
-
-            try:
-                with open('data/%s_ball_details.txt'%(match_id), 'r') as fil:
-                    a = eval(fil.read()[8:-2])
-                l = []
-                for i in a[0]['data']:
-                    temp = i.values()[0].split(',')
-                    l.append({'ball_speed': temp[3], 'landing_y': temp[4], 'landing_x': temp[5], 'bat_right_handed': temp[6],
-                         'ended_x': temp[7], 'ended_y': temp[8]})
-                df2 = pd.DataFrame(l)
-                if len(df2) == len(df):
-                    df = df.join(df2)
-                    cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
-                        'bowler_name', 'bat_right_handed', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
-                        'x', 'y', 'z', 'landing_x', 'landing_y', 'ended_x', 'ended_y', 'ball_speed', 'cumul_runs',
-                        'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out']
+        def add_wickets(inning, ovr, batsman, extras, unique, dismissals = dismissals):
+            #Note: a run-out on a no-ball or wide will be double-counted
+            if ovr in dismissals and dismissals[ovr]['inning'] == inning:
+                if unique == 'True':
+                    return True, dismissals[ovr]['how'], dismissals[ovr]['batsman']
                 else:
-                    print 'discrepancy', match_id
-                    cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
-                    'bowler_name', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
-                    'x', 'y', 'z', 'cumul_runs', 'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out']
-            except:
+                    if dismissals[ovr]['how'] != 'run out':
+                        if extras == 0:
+                            return True, dismissals[ovr]['how'], dismissals[ovr]['batsman']
+                        else:
+                            return False, np.nan, np.nan
+                    else:
+                        return True, dismissals[ovr]['how'], dismissals[ovr]['batsman'] #think of a better way later
+            return False, np.nan, np.nan
+
+        val_count_1 = df.ovr.value_counts()
+        val_count_2 = df2.ovr.value_counts()
+
+        def get_unique_1(i):
+            if val_count_1[i] == 1:
+                return True
+            return False
+
+        def get_unique_2(i):
+            if val_count_2[i] == 1:
+                return True
+            return False
+
+        df['ovr_unique'] = df.ovr.apply(get_unique_1)
+        df2['ovr_unique'] = df2.ovr.apply(get_unique_2)
+        df['extras'] = df['runs_w_extras'] - df['runs_batter']
+        df2['extras'] = df2['runs_w_extras'] - df2['runs_batter']
+        df['wicket'], df['wicket_method'], df['who_out'] = zip(*df.apply(lambda row: add_wickets(row['inning'], row['ovr'], row['batsman'], row['extras'], row['ovr_unique']), axis=1))
+        df2['wicket'], df2['wicket_method'], df2['who_out'] = zip(*df2.apply(lambda row: add_wickets(row['inning'], row['ovr'], row['batsman'], row['extras'], row['ovr_unique']), axis=1))
+        df['match_id'] = match_id
+        df2['match_id'] = match_id
+
+        df['cumul_runs'] = df['runs_w_extras'].cumsum()
+        df['cumul_wickets'] = df['wicket'].cumsum()
+        df['cumul_balls'] = df['ovr'].apply(lambda x: 6*int(x) + int(10*x)%10)
+        df2['cumul_runs'] = df2['runs_w_extras'].cumsum()
+        df2['cumul_wickets'] = df2['wicket'].cumsum()
+        df2['cumul_balls'] = df2['ovr'].apply(lambda x: 6*int(x) + int(10*x)%10)
+
+        player_db = {}
+        inn_1_batting_order = {}
+        inn_2_batting_order = {}
+        for idx__, d in enumerate(wicket_data['t1']['p']):
+            player_db.update(d)
+            inn_1_batting_order[d.keys()[0]] = idx__+1
+        for idx__, d in enumerate(wicket_data['t2']['p']):
+            player_db.update(d)
+            inn_2_batting_order[d.keys()[0]] = idx__+1
+
+        def get_name(i):
+            return player_db.get(i, None)
+
+        df['batsman_name'] = df['batsman'].apply(get_name)
+        df['bowler_name'] = df['bowler'].apply(get_name)
+        df['who_out'] = df['who_out'].apply(get_name)
+        df['batting_order'] = df['batsman'].apply(inn_1_batting_order.get)
+
+        df2['batsman_name'] = df2['batsman'].apply(get_name)
+        df2['bowler_name'] = df2['bowler'].apply(get_name)
+        df2['who_out'] = df2['who_out'].apply(get_name)
+        df2['batting_order'] = df2['batsman'].apply(inn_2_batting_order.get)
+
+        df = df.append(df2)    
+        df = df.drop('runs', axis=1)
+        df = df.reset_index(drop=True)
+
+        try:
+            with open('data/%s_ball_details.txt'%(match_id), 'r') as fil:
+                a = eval(fil.read()[8:-2])
+            l = []
+            for i in a[0]['data']:
+                temp = i.values()[0].split(',')
+                l.append({'non_striker': temp[1], 'ball_speed': temp[3], 'landing_y': temp[4], 'landing_x': temp[5],
+                  'bat_right_handed': temp[6], 'ended_x': temp[7], 'ended_y': temp[8],
+                  'control': int(temp[9] == 'N'), 'extras_type': temp[19]})
+            df2 = pd.DataFrame(l)
+            if len(df2) == len(df):
+                df = df.join(df2)
+                cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'non_striker',
+                'bowler_name', 'bat_right_handed', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
+                'x', 'y', 'z', 'landing_x', 'landing_y', 'ended_x', 'ended_y', 'ball_speed', 'cumul_runs',
+                'wicket', 'wicket_method', 'who_out', 'control', 'extras_type']
+            else:
+                print 'discrepancy', match_id
                 cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
-                    'bowler_name', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
-                    'x', 'y', 'z', 'cumul_runs', 'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out']
-            df = df[cols]
-            df.to_csv('cleaned_data/%s_summary.csv'%(match_id))
-            print 'success', idx, len(matches)
+                'bowler_name', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
+                'x', 'y', 'z', 'cumul_runs', 'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out']
         except:
-            print 'failed', idx, match_id, len(matches)
-            failed_ids.append(int(match_id))
-    else:
-        print 'already exists', idx, len(matches)
+            cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
+                'bowler_name', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
+                'x', 'y', 'z', 'cumul_runs', 'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out']
+        df = df[cols]
+        df.to_csv('cleaned_data/%s_summary.csv'%(match_id))
+        print 'success', idx, len(matches)
+    except:
+        print 'failed', idx, match_id, len(matches)
+        failed_ids.append(int(match_id))
+    #else:
+    #    print 'already exists', idx, len(matches)
 
 matches = pd.read_csv('all_t20i_05-16.csv')
 match_date = matches.set_index('match_id').date.to_dict()
