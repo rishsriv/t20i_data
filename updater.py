@@ -211,20 +211,16 @@ for idx, match_id in enumerate(matches):
                     l.append({'non_striker': temp[1], 'ball_speed': temp[3], 'landing_y': temp[4], 'landing_x': temp[5],
                       'bat_right_handed': temp[6], 'ended_x': temp[7], 'ended_y': temp[8],
                       'control': int(temp[9] == 'N'), 'extras_type': temp[19]})
+                    df2 = pd.DataFrame(l)
+                    cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order'
+                            'non_striker', 'bowler_name', 'bat_right_handed', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
+                            'x', 'y', 'z', 'landing_x', 'landing_y', 'ended_x', 'ended_y', 'ball_speed', 'cumul_runs',
+                            'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out', 'control', 'extras_type']
                 except:
+                    cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
+                            'bowler_name', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
+                            'x', 'y', 'z', 'cumul_runs', 'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out']
                     print 'complete parsing failed'
-            df2 = pd.DataFrame(l)
-            if len(df2) == len(df):
-                df = df.join(df2)
-                cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order'
-                'non_striker', 'bowler_name', 'bat_right_handed', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
-                'x', 'y', 'z', 'landing_x', 'landing_y', 'ended_x', 'ended_y', 'ball_speed', 'cumul_runs',
-                'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out', 'control', 'extras_type']
-            else:
-                print 'discrepancy', match_id
-                cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
-                'bowler_name', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
-                'x', 'y', 'z', 'cumul_runs', 'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out']
         except:
             cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
                 'bowler_name', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
