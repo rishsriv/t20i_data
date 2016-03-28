@@ -56,39 +56,39 @@ matches = [str(i) for i in matches]
 n = len(matches)
 
 for idx, game_id in enumerate(matches):
-    if not os.path.exists('cleaned_data/%s_summary.csv'%game_id):
+    #if not os.path.exists('cleaned_data/%s_summary.csv'%game_id):
+    try:
+        r1 = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?inning=1;template=wagon'%(game_id),
+                         proxies=proxies)
+        r2 = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?inning=2;template=wagon'%(game_id),
+                         proxies=proxies)
+        #print r1.status_code
+        #print r2.status_code
+        with open('data/'+game_id+'-wagon-inning-1.json', 'w') as outfile:
+            json.dump(r1.json(), outfile)
+
+        with open('data/'+str(game_id)+'-wagon-inning-2.json', 'w') as outfile:
+            json.dump(r2.json(), outfile)
+
+        r = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?template=pie_wickets'%(game_id),
+                        proxies=proxies)
+        with open('data/'+game_id+'-pie-wickets.json', 'w') as outfile:
+            json.dump(r.json(), outfile)
+
         try:
-            r1 = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?inning=1;template=wagon'%(game_id),
-                             proxies=proxies)
-            r2 = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?inning=2;template=wagon'%(game_id),
-                             proxies=proxies)
-            #print r1.status_code
-            #print r2.status_code
-            with open('data/'+game_id+'-wagon-inning-1.json', 'w') as outfile:
-                json.dump(r1.json(), outfile)
-
-            with open('data/'+str(game_id)+'-wagon-inning-2.json', 'w') as outfile:
-                json.dump(r2.json(), outfile)
-
-            r = requests.get('http://www.espncricinfo.com/ci/engine/match/gfx/%s.json?template=pie_wickets'%(game_id),
-                            proxies=proxies)
-            with open('data/'+game_id+'-pie-wickets.json', 'w') as outfile:
-                json.dump(r.json(), outfile)
-
-            try:
-                r = requests.get('http://www.espncricinfo.com/ci/engine/match/%s.html?view=hawkeye'%game_id)
-                dom = web.Element(r.content)
-                data_id = dom.by_id('matchId').attr.get('data-contentid')
-                r = requests.get('http://dynamic.pulselive.com/dynamic/cricinfo/%s/uds.json.jgz'%data_id)
-                with open('data/'+game_id+'_ball_details.txt', 'wb') as f:
-                    f.write(r.content)
-            except:
-                pass
-            print 'Success', game_id, idx, n
+            r = requests.get('http://www.espncricinfo.com/ci/engine/match/%s.html?view=hawkeye'%game_id)
+            dom = web.Element(r.content)
+            data_id = dom.by_id('matchId').attr.get('data-contentid')
+            r = requests.get('http://dynamic.pulselive.com/dynamic/cricinfo/%s/uds.json.jgz'%data_id)
+            with open('data/'+game_id+'_ball_details.txt', 'wb') as f:
+                f.write(r.content)
         except:
-            print 'Failed', game_id, idx, n
-    else:
-        print 'Already Exists', game_id, idx, n
+            pass
+        print 'Success', game_id, idx, n
+    except:
+        print 'Failed', game_id, idx, n
+    #else:
+    #    print 'Already Exists', game_id, idx, n
 
 all_matches = pd.read_csv('all_t20i_05-16.csv')
 all_matches = all_matches.sort('date', ascending = False)
@@ -216,7 +216,7 @@ for idx, match_id in enumerate(matches):
                 cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order'
                 'non_striker', 'bowler_name', 'bat_right_handed', 'ovr', 'runs_batter', 'runs_w_extras', 'extras',
                 'x', 'y', 'z', 'landing_x', 'landing_y', 'ended_x', 'ended_y', 'ball_speed', 'cumul_runs',
-                'cumul_wickets',  'cumul_balls', 'wicket', 'wicket_method', 'who_out', 'control', 'extras_type']
+                'cumul_wickets', 'cumul_balls', 'wicket', 'wicket_method', 'who_out', 'control', 'extras_type']
             else:
                 print 'discrepancy', match_id
                 cols = ['inning', 'batting_team', 'bowling_team', 'batsman', 'bowler', 'batsman_name', 'batting_order',
